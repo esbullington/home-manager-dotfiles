@@ -15,7 +15,7 @@
 
   home.packages = with pkgs; [
     vim yarn nodejs
-    gitAndTools.hub
+    gitAndTools.gh
     jq curl pass wget
     rsync pandoc dnsutils
     stack irssi
@@ -44,7 +44,6 @@
 		# Set status line foreground colour.
 		set -g status-fg white
     setw -g mode-keys vi
-    # easy vi pane navigation
     bind h select-pane -L
     bind j select-pane -D
     bind k select-pane -U

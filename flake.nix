@@ -9,25 +9,18 @@
   };
 
   outputs = { self, home-manager, ... }@inputs:
-    let
-      overlays = [
-        (import ./overlays/yadm)
-        (import ./overlays/vscode)
-      ];
-    in
     {
       homeConfigurations = {
-        linux-desktop = inputs.home-manager.lib.homeManagerConfiguration {
+        lenovo-laptop = inputs.home-manager.lib.homeManagerConfiguration {
           configuration = { pkgs, ... }:
             {
               xdg.configFile."nix".source = ./configs/nix;
               nixpkgs.config = import ./configs/nix/config.nix;
-              nixpkgs.overlays = overlays;
               imports = [
                 ./home.nix
-                ./modules/home-manager
-                ./modules/linux-bash
-                ./modules/vim
+                ./home-manager-modules/home-manager
+                ./home-manager-modules/nixos-bash
+                ./home-manager-modules/vim
               ];
 
             };
@@ -36,6 +29,6 @@
           username = "eric";
         };
       };
-      defaultPackage.x86_64-linux = self.homeConfigurations.linux-desktop.activationPackage;
+      defaultPackage.x86_64-linux = self.homeConfigurations.lenovo-laptop.activationPackage;
     };
 }
