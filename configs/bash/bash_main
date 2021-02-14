@@ -1,0 +1,66 @@
+# # If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# expand all dir env variables
+shopt -s direxpand 
+
+# source all bash files in $XDG_CONFIG_HOME/bash
+if [ -f $XDG_CONFIG_HOME/bash/bash_aliases ]; then
+  . $XDG_CONFIG_HOME/bash/bash_aliases
+fi
+
+if [ -f $XDG_CONFIG_HOME/bash/bash_functions ]; then
+    . $XDG_CONFIG_HOME/bash/bash_functions
+fi
+
+# General path appends and other non-secret environmental vars
+if [ -f $XDG_CONFIG_HOME/bash/bash_environment ]; then
+    . $XDG_CONFIG_HOME/bash/bash_environment
+fi
+
+# Local env to not be checked in
+if [ -f $XDG_CONFIG_HOME/bash/bash_local ]; then
+    . $XDG_CONFIG_HOME/bash/bash_local
+fi
+
+# API keys and other sensitive environmental variables
+if [ -f $XDG_CONFIG_HOME/.bash_secrets ]; then
+    . $XDG_CONFIG_HOME/.bash_secrets
+fi
+
+# "Herodotus was the father of history, you know"
+export HISTSIZE=50000
+export HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignorespace:ignoredups
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+  if [ -f $HOME/.local/share/bash-completion/bash_completion ]; then
+    . $HOME/.local/share/bash-completion/bash_completion
+  fi
+fi

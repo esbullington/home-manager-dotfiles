@@ -1,0 +1,81 @@
+
+filetype on
+filetype plugin on
+syntax on
+
+" XDG conpliance
+set runtimepath+=~/.config/vim,~/.config/vim/after
+
+set backspace=indent,eol,start
+
+" default tabs
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
+" incremental search
+set incsearch
+
+" Allow us to use bash aliases in command line
+let $BASH_ENV = "~/.bash_aliases"
+
+" temp/undo files
+set undofile
+set undolevels=1000         " How many undos
+set undoreload=10000        " number of lines to save for undo
+
+set backup                        " enable backups
+set swapfile                      " enable swaps
+set undodir=/tmp/vim/undo     " undo files
+set backupdir=/tmp/vim/backup " backups
+set directory=/tmp/vim/swap   " swap files
+
+" slimux
+map <C-c><C-c> :SlimuxREPLSendLine<CR>
+vmap <C-c><C-c> :SlimuxREPLSendSelection<CR>
+
+" Make those folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
+
+set tabstop=2     " Size of a hard tabstop (ts).
+set shiftwidth=2  " Size of an indentation (sw).
+set expandtab     " Always uses spaces instead of tab characters (et).
+set softtabstop=0 " Number of spaces a <Tab> counts for. When 0, featuer is off (sts).
+set autoindent    " Copy indent from current line when starting a new line.
+set smarttab      " Inserts blanks on a <Tab> key (as per sw, ts and sts).
+
+set laststatus=2
+set ruler
+
+set nocompatible
+
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin("$XDG_DATA_HOME/vim/plugged")
+
+" Make sure you use single quotes
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'reasonml-editor/vim-reason-plus'
+Plug 'jupyter-vim/jupyter-vim'
+Plug 'purescript-contrib/purescript-vim'
+Plug 'frigoeu/psc-ide-vim'
+Plug 'tpope/vim-abolish'
+Plug 'LnL7/vim-nix'
+Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
+
+" Initialize plugin system
+call plug#end()

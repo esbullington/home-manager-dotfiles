@@ -1,0 +1,58 @@
+shopt -s expand_aliases  
+# Aliases
+
+alias vim='vim -u $XDG_CONFIG_HOME/vim/vimrc'
+
+NIXFLK_HOME=$HOME/repos/etc/nixos/
+NIX_HM_CONFIG_HOME=$NIXFLK_HOME/users/eric/configs
+
+# edits
+# bash
+alias sb='source ~/.bashrc'
+alias eb='vim ~/.bashrc'
+alias em='vim $NIX_HM_CONFIG_HOME/bash/bash_main'
+alias ee='vim $NIX_HM_CONFIG_HOME/bash/bash_environment'
+alias ea='vim $NIX_HM_CONFIG_HOME/bash/bash_aliases'
+alias es='vim $NIX_HM_CONFIG_HOME/bash/bash_secrets'
+alias ef='vim $NIX_HM_CONFIG_HOME/bash/bash_functions'
+# other
+alias ev='vim $NIX_HM_CONFIG_HOME/vim/vimrc'
+alias eh='vim $NIXFLK_HOME/users/eric/home.nix'
+alias et='vim $XDG_CONFIG_HOME/tmux/tmux.conf'
+alias ey='vim $XDG_CONFIG_HOME/yadm/config'
+
+# sources
+# bash
+alias se='source $XDG_CONFIG_HOME/bash/bash_environment'
+alias sa='source $XDG_CONFIG_HOME/bash/bash_aliases'
+alias ss='source $XDG_CONFIG_HOME/bash/bash_secrets'
+alias sf='source $XDG_CONFIG_HOME/bash/bash_functions'
+# other
+alias sh='home-manager switch'
+alias st='tmux source-file $XDG_CONFIG_HOME/tmux/tmux.conf'
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias git=hub
+alias scalabootstrap='sbt new sbt/scala-seed.g8'
+alias blogdate='date +"%Y-%m-%d"'
+
+alias grabit='tmux attach-session -d'
+alias takeover='tmux detach -a'
+
+alias jserve='bundle exec jekyll serve'
+alias makehash='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 16 | head -n 1'
+
+alias clearhistory='history -c && history -w'
+alias javarepl='java -jar $HOME/bin/javarepl-428.jar'
+alias qrepl='rlwrap q'
+
+alias clipboard='xclip -sel clip'
+alias xclipcopy='xclip -selection clipboard'
+alias xclippaste='xclip -selection clipboard -o'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
