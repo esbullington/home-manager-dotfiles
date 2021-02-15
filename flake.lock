@@ -9,13 +9,13 @@
       "locked": {
         "lastModified": 1612902587,
         "narHash": "sha256-VZ7Z1OMFf5ReObu3CCVBsC2DWloTYDjqW1onUKejVrE=",
-        "owner": "esbullington",
+        "owner": "nix-resources",
         "repo": "home-manager",
         "rev": "209566c752c4428c7692c134731971193f06b37c",
         "type": "github"
       },
       "original": {
-        "owner": "esbullington",
+        "owner": "nix-resources",
         "ref": "release-20.09",
         "repo": "home-manager",
         "type": "github"
@@ -23,15 +23,15 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1613103320,
-        "narHash": "sha256-QO52M2/8DmkGXW650YyBr+RccvkdCnJFGu/wA7ubQhs=",
-        "owner": "esbullington",
+        "lastModified": 1613381726,
+        "narHash": "sha256-XFY0/OhfKX9FehGkmBOA2PczVBU9SGfw5fYyDJxbu8k=",
+        "owner": "nix-resources",
         "repo": "nixpkgs",
-        "rev": "21a675946347bca090e2e68bfb5b1677b6113cb2",
+        "rev": "c36bcb913047ca48c6c8d1a5fb65d91327544b33",
         "type": "github"
       },
       "original": {
-        "owner": "esbullington",
+        "owner": "nix-resources",
         "repo": "nixpkgs",
         "type": "github"
       }
